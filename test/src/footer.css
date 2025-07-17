@@ -1,0 +1,52 @@
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 440px;
+  padding: 20px 15px;
+  background-color: #f5f3ea;
+  border-top: solid 1px #717171;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 999;
+  position: absolute;
+}
+
+.footerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 390px;
+  height: 74px;
+  background-color: #99a99b;
+  border-radius: 10px;
+}
+
+.menuContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.menuItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+  width: 68px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menuLink.active .menuItem {
+  background-color: #f5f3ea;
+}
+
+.menuIcon {
+  width: 60px;
+  height: 40px;
+}
