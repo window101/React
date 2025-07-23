@@ -16,24 +16,27 @@ const mockData = [
   {
     id: "mock1",
     date: new Date().getTime(),
-    content: "mock1",
+    content: "완전 좋아요!!!",
     emotionId: 1,
   },
   {
     id: "mock2",
-    date: new Date().getTime(),
-    content: "mock2",
+    date: new Date().getTime() - 10,
+    content: "좋아요~~~~~",
     emotionId: 2,
   },
   {
     id: "mock3",
-    date: new Date().getTime(),
-    content: "mock3",
+    date: new Date().getTime() - 100,
+    content: "그럭저럭~~~",
     emotionId: 3,
   },
 ];
 function reducer(state, action) {
   switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
     case "CREATE": {
       return [action.data, ...state];
     }
@@ -45,13 +48,8 @@ function reducer(state, action) {
       });
     }
     case "DELETE": {
-      return state.map((it) => {
-        return String(it.id) === String(action.data.id)
-          ? { ...action.data }
-          : it;
-      });
+      return state.filter((it) => String(it.id) !== String(action.targetId));
     }
-
     default:
       return state;
   }
@@ -105,17 +103,10 @@ function App() {
           <div className="App">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/edit" element={<Edit />} />
+              <Route path="/edit/:id" element={<Edit />} />
               <Route path="/diary/:id" element={<Diary />} />
               <Route path="/new" element={<New />} />
             </Routes>
-
-            <div>
-              <Link to={"/"}>Home</Link>
-              <Link to={"/edit"}>Edit</Link>
-              <Link to={"/diary"}>Diary</Link>
-              <Link to={"/new"}>New</Link>
-            </div>
           </div>
         </DiaryDispatchContext.Provider>
       </DiaryStateContext.Provider>
